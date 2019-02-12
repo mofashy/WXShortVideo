@@ -29,6 +29,8 @@
 @property (strong, nonatomic) CIContext *ciContext;
 @property (strong, nonatomic) GLKView *glView;
 
+@property (nonatomic) dispatch_queue_t videoDataOutputQueue;
+@property (nonatomic) dispatch_queue_t audioDataOutputQueue;
 @property (nonatomic) dispatch_queue_t videoWriterQueue;
 @property (nonatomic) dispatch_queue_t audioWriterQueue;
 
@@ -106,14 +108,17 @@
         }
     }
     
+    _videoDataOutputQueue = dispatch_queue_create("com.wx.queue.video.data", DISPATCH_QUEUE_SERIAL);
+    dispatch_set_target_queue(_videoDataOutputQueue, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
     _videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
-    [_videoDataOutput setSampleBufferDelegate:self queue:dispatch_queue_create("video sample buffer delegate", DISPATCH_QUEUE_SERIAL)];
+    [_videoDataOutput setSampleBufferDelegate:self queue:_videoDataOutputQueue];
     if ([_captureSession canAddOutput:_videoDataOutput]) {
         [_captureSession addOutput:_videoDataOutput];
     }
     
+    _audioDataOutputQueue = dispatch_queue_create("com.wx.queue.audio.data", DISPATCH_QUEUE_SERIAL);
     _audioDataOutput = [[AVCaptureAudioDataOutput alloc] init];
-    [_audioDataOutput setSampleBufferDelegate:self queue:dispatch_queue_create("audio sample buffer delegate", DISPATCH_QUEUE_SERIAL)];
+    [_audioDataOutput setSampleBufferDelegate:self queue:_audioDataOutputQueue];
     if ([_captureSession canAddOutput:_audioDataOutput]) {
         [_captureSession addOutput:_audioDataOutput];
     }
@@ -138,18 +143,18 @@
 }
 
 - (void)setupWriter {
-    _videoWriterQueue = dispatch_queue_create("com.wx.queue.video_writing", DISPATCH_QUEUE_SERIAL);
-    _audioWriterQueue = dispatch_queue_create("com.wx.queue.audio_writing", DISPATCH_QUEUE_SERIAL);
+    _videoWriterQueue = dispatch_queue_create("com.wx.queue.video.write", DISPATCH_QUEUE_SERIAL);
+    _audioWriterQueue = dispatch_queue_create("com.wx.queue.audio.write", DISPATCH_QUEUE_SERIAL);
     
     NSDictionary *videoSetting = @{AVVideoCodecKey: AVVideoCodecH264,
-                                   AVVideoWidthKey: @540,
-                                   AVVideoHeightKey: @960,
+                                   AVVideoWidthKey: @720,
+                                   AVVideoHeightKey: @1280,
                                    AVVideoScalingModeKey: AVVideoScalingModeResizeAspectFill,
                                    AVVideoCompressionPropertiesKey: @{
                                            AVVideoExpectedSourceFrameRateKey: @15,
                                            AVVideoMaxKeyFrameIntervalKey: @15,
                                            AVVideoProfileLevelKey: AVVideoProfileLevelH264HighAutoLevel,
-                                           AVVideoAverageBitRateKey: @1024000,
+                                           AVVideoAverageBitRateKey: @(1280 * 720 * 2),
                                            }};
     NSDictionary *audioSetting = @{AVFormatIDKey: [NSNumber numberWithInt:kAudioFormatMPEG4AAC],
                                    AVNumberOfChannelsKey: @1,
