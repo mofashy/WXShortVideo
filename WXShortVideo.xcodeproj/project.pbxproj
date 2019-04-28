@@ -18,6 +18,7 @@
 		2238C1FF1FBAD3F8005F66D9 /* WXShortVideoSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2238C1FE1FBAD3F8005F66D9 /* WXShortVideoSession.m */; };
 		2238C2021FBADC8E005F66D9 /* WXCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2238C2011FBADC8E005F66D9 /* WXCaptureViewController.m */; };
 		2238C2061FBC0290005F66D9 /* WXPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2238C2051FBC0290005F66D9 /* WXPlaybackViewController.m */; };
+		F015100F22756235000767F7 /* WXShortVideoWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F015100E22756235000767F7 /* WXShortVideoWriter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		2238C2011FBADC8E005F66D9 /* WXCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXCaptureViewController.m; sourceTree = "<group>"; };
 		2238C2041FBC0290005F66D9 /* WXPlaybackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXPlaybackViewController.h; sourceTree = "<group>"; };
 		2238C2051FBC0290005F66D9 /* WXPlaybackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXPlaybackViewController.m; sourceTree = "<group>"; };
+		F015100D22756235000767F7 /* WXShortVideoWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXShortVideoWriter.h; sourceTree = "<group>"; };
+		F015100E22756235000767F7 /* WXShortVideoWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXShortVideoWriter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 			children = (
 				2238C1FD1FBAD3F8005F66D9 /* WXShortVideoSession.h */,
 				2238C1FE1FBAD3F8005F66D9 /* WXShortVideoSession.m */,
+				F015100D22756235000767F7 /* WXShortVideoWriter.h */,
+				F015100E22756235000767F7 /* WXShortVideoWriter.m */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				2238C1D51FBAD33E005F66D9 /* main.m in Sources */,
 				2238C2061FBC0290005F66D9 /* WXPlaybackViewController.m in Sources */,
 				2238C1FF1FBAD3F8005F66D9 /* WXShortVideoSession.m in Sources */,
+				F015100F22756235000767F7 /* WXShortVideoWriter.m in Sources */,
 				2238C1C71FBAD33E005F66D9 /* AppDelegate.m in Sources */,
 				2238C2021FBADC8E005F66D9 /* WXCaptureViewController.m in Sources */,
 			);
@@ -483,7 +489,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y2A4GBHCSV;
 				INFOPLIST_FILE = WXShortVideo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = WX.WXShortVideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -498,7 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y2A4GBHCSV;
 				INFOPLIST_FILE = WXShortVideo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = WX.WXShortVideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
